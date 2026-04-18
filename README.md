@@ -13,9 +13,7 @@
 * 硬體: 標籤機（請確保已安裝 Windows 驅動程式）
 🔗下載連結：https://www.niimbot.com/tw/downloadCenter
 
-2. 安裝步驟
-⚠️請先確保已安裝 Python、PostgreSQL、標籤機驅動程式後再執行
-將專案 Clone 或下載到本地端
+2. 將專案 Clone 或下載到本地端（⚠️請先確保已安裝 Python、PostgreSQL、標籤機驅動程式後再執行）
 * 打開命令提示字元(cmd) 執行
 git clone https://github.com/zhihuac-tku/goldfish_project.git
 
