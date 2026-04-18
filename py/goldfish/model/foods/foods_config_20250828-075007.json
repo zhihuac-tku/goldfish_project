@@ -1,0 +1,41 @@
+{
+  "categorical_cols": [
+    "Gender",
+    "Age",
+    "shoe",
+    "E-1老街小吃（例：現烤香腸）",
+    "E-2品誼古早味小吃",
+    "E-3龍記牛肉麵",
+    "E-4吉祥鮮肉小籠包（前正好鮮肉小籠包）",
+    "E-5阿宗芋冰城",
+    "E-6老張早餐吧",
+    "E-7Hito石花凍",
+    "E-8頭城車站阿伯炸彈蔥油餅",
+    "E-9屋台拉麵",
+    "E-10頂埔阿嬤蔥油餅",
+    "E-11 春捲伯"
+  ],
+  "numeric_cols": [],
+  "target_mode": "Multi-label (multiple foods per user)",
+  "class_names": [
+    "like-p1",
+    "like-p2",
+    "like-p3",
+    "like-p4",
+    "like-p5",
+    "like-p9",
+    "like-g1",
+    "like-g4",
+    "like-g5",
+    "like-g8"
+  ],
+  "hidden": [
+    512,
+    256,
+    128
+  ],
+  "dropout": 0.2,
+  "max_emb_dim": 16,
+  "auto_tuned_threshold": true,
+  "preset": "Foods"
+}

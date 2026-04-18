@@ -1,0 +1,41 @@
+{
+  "categorical_cols": [
+    "Gender",
+    "Age",
+    "shoe",
+    "P-1蘭陽博物館",
+    "P-3烏石漁港",
+    "P-4頭城老街",
+    "P-5龜山島賞鯨",
+    "P-6北關海潮一線天",
+    "P-7金車伯朗咖啡城堡",
+    "P-8慶元宮",
+    "P-9頭城濱海森林公園",
+    "P-10草嶺古道",
+    "P-11九號咖啡石城館",
+    "P-12蟾蜍山觀景台",
+    "P-13大里天公廟",
+    "P-14大溪漁港",
+    "P-15頭城農場"
+  ],
+  "numeric_cols": [],
+  "target_mode": "Multi-label (multiple foods per user)",
+  "class_names": [
+    "like-e1",
+    "like-e5",
+    "like-e8",
+    "like-g1",
+    "like-g4",
+    "like-g5",
+    "like-g8"
+  ],
+  "hidden": [
+    512,
+    256,
+    128
+  ],
+  "dropout": 0.2,
+  "max_emb_dim": 16,
+  "auto_tuned_threshold": true,
+  "preset": "Places"
+}

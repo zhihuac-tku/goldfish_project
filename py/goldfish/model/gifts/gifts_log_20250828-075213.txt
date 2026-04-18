@@ -1,0 +1,6 @@
+Epoch 01 | loss=1.2448 | microF1=0.2857 | macroF1=0.2302 | mAP=0.2407 | thr=0.50
+Epoch 02 | loss=1.2351 | microF1=0.2105 | macroF1=0.1952 | mAP=0.2037 | thr=0.47
+Epoch 03 | loss=1.2126 | microF1=0.2051 | macroF1=0.1243 | mAP=0.1574 | thr=0.48
+Epoch 04 | loss=1.1849 | microF1=0.2105 | macroF1=0.2063 | mAP=0.1463 | thr=0.42
+Epoch 05 | loss=1.1605 | microF1=0.2069 | macroF1=0.1952 | mAP=0.1426 | thr=0.38
+Epoch 06 | loss=1.0962 | microF1=0.2069 | macroF1=0.1952 | mAP=0.1704 | thr=0.35

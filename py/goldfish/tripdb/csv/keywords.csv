@@ -1,0 +1,92 @@
+keyword_id,value,dimension,description,value_en,value_ja
+1,古道,place_type,傳統山徑，多為不平整地形,Old Trail,古道（こどう）
+2,步道,place_type,規劃完善、適合步行的道路,Walking Trail,歩道（ほどう）
+3,健行,activity,以步行方式進行的戶外活動,Hiking,ハイキング
+4,登山,activity,需要體力與步行的戶外活動,Mountain Climbing,登山（とざん）
+5,森林,environment,樹木密集的自然環境,Forest,森林（しんりん）
+6,山,environment,地勢高起的自然地形,Mountain,山（やま）
+7,登高,activity,前往高處以眺望或挑戰高度的行為,Ascend / Summit,登高（とうこう）
+8,觀景台,place_type,供遊客欣賞景色的固定設施,Observation Deck,展望台（てんぼうだい）
+9,地質,view,具地質特色的自然景觀或區域,Geology,地質（ちしつ）
+10,岩,view,裸露岩石或岩層景觀,Rock / Boulder,岩（いわ）
+11,海,view,大面積海水自然景觀,Sea / Ocean,海（うみ）
+12,海景,view,以海洋景觀為主的觀賞地點,Sea View,海の景色（うみのけしき）
+13,沙灘,place_type,由沙粒構成的海岸地形,Beach,砂浜（すなはま）
+14,衝浪,activity,利用浪板在海浪上滑行的活動,Surfing,サーフィン
+15,海岸,place_type,海洋與陸地交界的地帶,Coast / Shore,海岸（かいがん）
+16,船,activity,搭乘或使用船隻進行的活動,Boat,船（ふね）
+17,賞鯨,activity,觀賞鯨豚等海洋生物的活動,Whale Watching,鯨ウォッチング
+18,潮,view,與潮汐變化相關的自然景觀,Tide,潮（しお）
+19,海灘,place_type,供遊憩活動的沙質海岸,Beach,砂浜（すなはま）
+20,漁港,place_type,漁業與船隻停泊的港口,Fishing Harbor,漁港（ぎょこう）
+21,公園,place_type,提供休憩與活動的公共空間,Park,公園（こうえん）
+22,咖啡廳,place_type,以咖啡飲品與休憩為主的場所,Café,カフェ
+23,城堡,place_type,具歷史或觀光價值的建築,Castle,城（しろ）
+24,觀景,activity,以欣賞景色為目的的行為,Sightseeing / View,観光（かんこう）
+25,拍照,activity,進行攝影記錄的行為,Photography / Photo Spot,写真撮影（しゃしんさつえい）
+26,老街,place_type,保留傳統風貌的街道聚落,Old Street,古い街並み（ふるいまちなみ）
+27,博物館,place_type,展示文化、歷史或科學的空間,Museum,博物館（はくぶつかん）
+28,文創,place_type,以文化創意為主題的場域或聚落,Cultural & Creative,文化創意（ぶんかそうい）
+29,散步,activity,以輕鬆、低強度步行為主的休閒活動,Strolling / Walk,散歩（さんぽ）
+30,探索,activity,以發掘環境特色為目的的行為,Exploration,探索（たんさく）
+31,打卡熱點,theme,因視覺特色、場景氛圍或話題性而受到歡迎的拍照地點，適合社群分享與紀錄旅遊體驗,Popular Check-in Spot,インスタ映えスポット
+32,日出,view,太陽升起時的自然景象,Sunrise,日の出（ひので）
+33,特色建築,theme,具有獨特外觀、設計風格或文化意涵，成為地點辨識或觀賞重點的建築,Unique Architecture,特徴的な建築（とくちょうてきなけんちく）
+34,歷史文化,theme,與歷史發展、文化背景與地方記憶相關的內容,Historical Culture,歴史文化（れきしぶんか）
+35,漁貨市場,place_type,集中販售當日漁獲的市場空間,Fish Market,魚市場（うおいちば）
+36,古蹟建築,place_type,具有歷史價值並受保存的建築物,Historic Building,史跡建築（しせきけんちく）
+37,在地小吃,food,反映地方飲食文化的傳統或特色小吃,Local Snacks,地元グルメ（じもとぐるめ）
+38,文化探索,activity,透過參觀與體驗深入了解地方文化的行為,Cultural Exploration,文化探索（ぶんかたんさく）
+39,媽祖廟,place_type,供奉媽祖的宗教場所，常為地方信仰中心,Mazu Temple,媽祖廟（まそびょう）
+40,宗教文化,theme,與宗教信仰、儀式與精神價值相關的文化內涵,Religious Culture,宗教文化（しゅうきょうぶんか）
+41,傳統建築,theme,依循傳統工法與樣式建造的建築形式,Traditional Architecture,伝統建築（でんとうけんちく）
+42,攝影,activity,使用影像方式記錄人物、景觀或事件的行為,Photography,写真撮影（しゃしんさつえい）
+43,廟宇,place_type,宗教建築,Temple,寺院（じいん）
+44,信仰中心,theme,承載地方信仰與精神寄託的重要場所或象徵,Religious Center,信仰の中心（しんこうのちゅうしん）
+45,新鮮漁貨,food,當日捕撈、保存度高的海鮮食材,Fresh Seafood,新鮮な魚介（しんせんなぎょかい）
+46,漁市小吃,food,於漁市場周邊販售的特色熟食,Fish Market Snacks,魚市場グルメ（うおいちばグルメ）
+47,農業體驗,activity,實際參與農作或農村生活的體驗活動,Agricultural Experience,農業体験（のうぎょうたいけん）
+48,自然生態,environment,動植物與自然環境構成的生態系統,Natural Ecology,自然生態（しぜんせいたい）
+49,親子活動,activity,適合家長與孩童共同參與的活動形式,Family / Kids Activities,親子アクティビティ
+50,老街美食,food,位於老街聚落中的特色飲食,Old Street Food,古い街並みグルメ（ふるいまちなみグルメ）
+51,傳統小吃,food,長期流傳、具地方特色的街頭小吃,Traditional Snacks,伝統的なスナック（でんとうてきなスナック）
+52,古早味,theme,帶有懷舊、傳統風格的口味或製作方式,Traditional Taste,昔ながらの味（むかしながらのあじ）
+53,小吃,food,份量較小、價格親民的日常飲食,Snack / Street Food,スナック / 屋台料理
+54,在地風味,theme,反映地方食材與飲食習慣的特色口味,Local Flavor,地元の味（じもとのあじ）
+55,牛肉麵,food,以牛肉與湯頭為主的台灣代表性麵食,Beef Noodles,牛肉麺（ぎゅうにくめん）
+56,湯頭濃郁,theme,湯品風味厚實、口感層次豐富,Rich Soup,濃厚スープ（のうこうスープ）
+57,在地美食,food,具地方代表性的飲食選擇,Local Cuisine,地元料理（じもとりょうり）
+58,小籠包,food,以薄皮包裹肉餡並含湯汁的蒸製點心,Soup Dumplings,小籠包（ショウロンポウ）
+59,現蒸美味,theme,現場蒸製、強調新鮮口感的特色,Freshly Steamed,蒸したて（むしたて）
+60,早餐,food,一日開始時食用的餐點,Breakfast,朝食（ちょうしょく）
+61,蔥油餅,food,以麵皮與蔥製作的煎製傳統小吃,Scallion Pancake,葱油餅（ツォンヨウビン）
+62,排隊名店,theme,因知名度高而常需排隊等候的店家,Popular / Famous Store,行列の名店（ぎょうれつのめいてん）
+63,手工現做,theme,強調現場手工製作的飲食特色,Handmade / Freshly Made,手作り（てづくり）
+64,日式拉麵,food,源自日本、以湯頭與麵條為重點的麵食,Japanese Ramen,日本式ラーメン（にほんしきラーメン）
+65,現炸美味,theme,現場油炸、口感酥脆的新鮮料理特色,Freshly Fried,揚げたて（あげたて）
+66,春捲,food,以蔬菜或肉餡包裹後油炸的傳統小吃,Spring Roll,春巻き（はるまき）
+67,石花凍,food,由海藻製成的清涼甜品或飲品,Jelly Dessert,石花ゼリー（せきかゼリー）
+68,涼爽甜品,theme,口感清涼、適合消暑的甜點類型,Cool Dessert,ひんやりデザート
+69,海藻飲品,food,以海藻為原料製成的飲品,Seaweed Drink,海藻ドリンク
+70,芋頭冰,food,以芋頭為主要原料製作的冰品,Taro Ice,タロイモアイス
+71,古早味冰品,food,採用傳統製法的懷舊冰品,Traditional Ice Dessert,昔ながらのアイス（むかしながらのアイス）
+72,在地名店,theme,於當地具高知名度與口碑的店家,Local Famous Store,地元名店（じもとめいてん）
+73,西點,food,以歐式手法製作的甜點或烘焙產品，如蛋糕、泡芙等,Western Pastry,洋菓子（ようがし）
+74,在地烘焙,food,由當地烘焙坊製作，反映地方風味與特色,Local Bakery,地元ベーカリー
+75,蔥燒餅,food,以蔥與麵粉製作的傳統中式烘焙點心,Scallion Bun,葱焼きパン
+76,傳統烘焙,theme,採用傳統手法或食譜製作的烘焙品,Traditional Bakery,伝統的なベーカリー
+77,奶酥吐司,food,以奶酥為內餡或塗抹的烘焙麵包,Butter Toast,バタートースト
+78,人氣美食,theme,受到大眾歡迎，常被推薦的特色食物,Popular Cuisine,人気グルメ（にんきぐるめ）
+79,創始店,theme,具有歷史或品牌起源意義的店家,Original Store,創業店（そうぎょうてん）
+80,金棗,food,小型柑橘類水果，常用於甜品或加工製品,Kumquat,キンカン
+81,伴手禮,theme,適合帶回贈送的特色商品,Souvenir,お土産（おみやげ）
+82,在地特產,theme,當地生產或具有地方特色的產品,Local Specialty,地元特産（じもととくさん）
+83,農特產品,food,由農業生產的特色產品，如水果、乾貨等,Agricultural Products,農産物（のうさんぶつ）
+84,在地品牌,theme,當地知名品牌或生產者，具有特色或口碑,Local Brand,地元ブランド
+85,肉鬆,food,將肉類加工製作成鬆軟可口的食品，常用於搭配飯或麵包,Pork Floss,肉そぼろ（にくそぼろ）
+86,手工製作,theme,強調人工製作過程，保留手工特性與品質,Handmade,手作り（てづくり）
+87,甜點,food,以糖、麵粉、乳製品或水果製作的餐後點心或休閒食品,Dessert,デザート
+88,下午茶,activity,介於正餐之間的輕食或甜點用餐時段，多搭配咖啡、茶飲、西點或甜品，適合朋友聚會、放鬆休憩與拍照打卡,Afternoon Tea,アフタヌーンティー
+89,輕食,food,份量較小、口味清爽的餐點或點心,Light Meal,軽食（けいしょく）
+90,飲品,food,可飲用的冷熱飲料，包含咖啡、茶飲、果汁、冰飲與特色飲品,Drink,飲み物（のみもの）
+91,簡餐,food,以主食搭配配菜組成的定食或套餐型餐點，份量適中、出餐快速,Set Meal / Light Meal,簡単食事（かんたんしょくじ）

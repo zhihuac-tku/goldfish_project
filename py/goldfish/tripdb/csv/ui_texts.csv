@@ -1,0 +1,95 @@
+key,zh_text,en_text,ja_text
+title,拾光道聚-2025頭城老街文化藝術季,Time-Light Gathering - 2025 Toucheng Old Street Cultural and Art Festival,拾光（ひかり）と道が集う - 2025年頭城老街文化芸術祭
+take_photo,📸 請直接拍攝鞋子（置中、清晰、光線充足）,"📸 Please take a photo of your shoes (centered, clear, and well-lit).",📸 靴を直接撮影してください（中央にあって、鮮明に、明るい場所で）。
+take_photo_error,請把鞋子置中拍攝,Please center the shoes in the photo,靴を中央に置いて撮影してください
+take_photo_warning,⚠️ 尚未拍攝影像,⚠️ No photo taken yet,⚠️ 画像がまだありません
+declined_msg,✅ 系統已紀錄您不接受本次推薦，謝謝 🙏,✅ The system has recorded that you declined this recommendation. Thank you 🙏,✅ システムはあなたがこの推薦をキャンセルを記録しました。ありがとうございます 🙏
+countdown_msg,5 秒後將自動回到首頁…,The page will return to home in 5 seconds…,5 秒後にホームに自動で戻ります…
+stage0,👟 鞋款辨識 (ResNet50),👟 Shoe Recognition (ResNet50),👟 靴の認識 (ResNet50)
+stage0_shown,系統推測：,System Prediction:,判定結果：
+stage0_confidence,信心,Confidence,信頼度
+other,其他 / 不是上述,Other / Not listed,その他 / 該当なし
+comfirm,請確認或更改鞋款：,Please confirm or change the shoe model:,靴の種類を確認または変更してください：
+choose,請選擇正確鞋款：,Please select the correct shoe model:,正しい靴の種類を選択してください：
+stage0_next,✅ 確認鞋款並繼續,✅ Confirm shoe model and continue,✅ 靴の種類を確認して続行
+stage0_skip,跳過（維持系統推測）,Skip (keep system prediction),スキップ（システム推測を維持）
+stage0_info,🗄 已寫入鞋款確認結果（PostgreSQL）,🗄 Shoe confirmation result saved (PostgreSQL),🗄 靴の確認結果が保存されました（PostgreSQL）
+gender_male,男,Male,男性
+gender_female,女,Female,女性
+age_option_below15,15歲（含）以下,15 years old or below,15歳以下
+age_option_16-30,16-30歲,16-30 years old,16-30歳
+age_option_31-45,31-45歲,31-45 years old,31-45歳
+age_option_46-60,46-60歲,46-60 years old,46-60歳
+age_option_above60,60歲（含）以上,60 years old or above,60歳以上
+all_categories_p,景點,Attractions,観光スポット
+all_categories_e,美食,Food,グルメ
+all_categories_g,伴手禮,Souvenir,お土産
+stage1,請選擇您的基本資料,Please select your basic information,基本情報を選択してください
+gender,性別,Gender,性別
+age,年齡,Age,年齢
+next_btn,下一步 ➡️,Next ➡️,次へ ➡️
+finish_info,👉 完成後請點我：,👉 Click me when finished:,👉 完了後にクリックしてください：
+stage1_warning,請先選擇性別和年齡,Please select gender and age first,まず性別と年齢を選択してください
+stage2_title,請選擇您想告訴我們「去過」或是「計畫中」的景點或美食或伴手禮（單選）,Please select the places or food or souvenirs you have visited or plan to visit (single choice),「行ったことがある」または「計画中」の観光地・グルメ・お土産を選択してください（単一選択）
+stage2_shown,👉 您選擇的是：,👉 Your selection:,👉 あなたが選んだもの：
+stage3,請選擇「{selected_category}」的項目（單選）,"Please select an item from ""{selected_category}"" (single choice)",「{selected_category}」の項目を選択してください（単一選択）
+expand_list,📍 展開選項清單,📍 Expand option list,📍 選択リストを展開
+stage3_shown,您選擇的 {selected_category} 是：,Your selected {selected_category} is:,あなたが選択した {selected_category} は：
+stage3_info,👉 確認後請按「下一步 ➡️」,"👉 After confirming, please click ""Next ➡️""",👉 確認後「次へ ➡️」をクリックしてください
+change_option,修改選項 ✏️,Modify selection ✏️,選択を変更 ✏️
+stage4_title_place,請選擇要「推薦」給您的是頭城的美食或是伴手禮,Please select whether to recommend food or souvenirs in Toucheng,頭城のグルメまたはお土産を推薦するか選択してください
+stage4_title_eat,請選擇要「推薦」給您的是頭城的景點或是伴手禮,Please select whether to recommend attractions or souvenirs in Toucheng,頭城の観光地またはお土産を推薦するか選択してください
+stage4_title_gift,請選擇要「推薦」給您的是頭城的景點或是美食,Please select whether to recommend attractions or food in Toucheng,頭城の観光地またはグルメを推薦するか選択してください
+stage4_info,您想要系統推薦的是：,The type you want the system to recommend:,システムに推薦してほしい種類：
+stage5,📍 以下為根據您的鞋子所進行的旅行推薦,📍 The following are travel recommendations based on your shoes,📍 以下はあなたの靴に基づいたおすすめの旅プランです
+stage5_info,您選擇要推薦的類型是：{rc}, The type you chose to recommend is:{rc}, あなたが選択した推薦タイプ：{rc}
+stage5_title,🔹 請勾選您喜歡的推薦結果（可複選）,🔹 Please check the recommendations you like (multiple choice),🔹 あなたが気に入ったおすすめを選択してください（複数選択可）
+score,分數:,Score:,スコア：
+keywords,關鍵字：,Keywords:,キーワード：
+stage5_con_btn,👍 這些可以！,👍 These are fine!,👍 気に入った！
+stage5_dec_btn,😅 都不是我喜歡的...,😅 None of these are to my liking...,😅 どれも気に入らない...
+stage6_spinner,⏳ 使用本地 LLM 生成報告中...,⏳ Generating report using local LLM...,⏳ ローカルLLMでレポート生成中...
+stage6_btn,👉 查看完報告後請點我：,👉 Click me after viewing the report:,👉 レポートを確認後にクリックしてください：
+stage7_pic,📸 想要拍下生成結果作為紀念嗎？,📸 Would you like to take a photo of the generated result as a souvenir?,📸 生成結果を保存しますか？
+pic_option_1,好哇！😍,Sure! 😍,はい！😍
+pic_option_2,先不用，謝謝 🙏,"Not now, thanks 🙏",今はいいです 🙏
+stage7_rating,💬 請給予系統一個好感度評分,💬 Please rate the system:,💬 システムに評価をお願いします：
+rating_option_1,非常喜歡 😍,Love it 😍,最高！ 😍
+rating_option_2,喜歡 🙂,Like it 🙂,好き 🙂
+rating_option_3,普通 😐,Neutral 😐,普通 😐
+rating_option_4,不喜歡 🙁,Dislike 🙁,嫌い 🙁
+rating_option_5,非常不喜歡 😡,Hate it 😡,大嫌い 😡
+stage7_fin_btn,🎁 立即獲取獎勵標籤,🎁 Get reward label immediately,🎁 報酬ラベルをすぐに取得
+stage7_warning,請先完成『拍照記錄結果』和『好感度評分』的選擇,"Please complete ""Take Photo"" and ""Rating"" first",まず「写真撮影」と「評価」を完了してください
+label_random,🎲 已隨機選擇組合：{chosen_pair},🎲 Randomly selected combination: {chosen_pair},🎲 ランダムに選択された組み合わせ： {chosen_pair}
+label_shown,🎁 顯示圖片：{image_file},🎁 Display image:{image_file},🎁 画像を表示：{image_file}
+label_warning,⚠️ 找不到對應圖片：{image_file},⚠️ Corresponding image not found:{image_file},⚠️ 対応する画像が見つかりません：{image_file}
+label_com,🎯 對應組合：{selected_label_key} →,🎯 Corresponding combination:{selected_label_key} → ,🎯 対応組み合わせ：{selected_label_key} → 
+log_info,✅ 已更新評分到同一筆紀錄（user_id={cur_uid}）,✅ Updated rating to the same record (user_id={cur_uid}),✅ 同じレコードに評価を更新しました (user_id={cur_uid})
+log_error,❌ 更新資料庫失敗：{e},❌ Failed to update database: {e},❌ データベースの更新に失敗しました: {e}
+rerun,🔁 開始新一輪,🔁 Start a new round,🔁 新しいラウンドを開始
+lbl_recommend,推薦,Recommended,おすすめ
+lbl_place,景點,Attractions,観光スポット
+lbl_food,美食,Food,グルメ
+lbl_gift,伴手禮,Souvenirs,お土産
+lbl_like_place,喜歡景點,Preferred Attractions,好きな観光スポット
+lbl_like_food,喜歡美食,Preferred Food,好きなグルメ
+lbl_like_gift,喜歡伴手禮,Preferred Souvenirs,好きなお土産
+lbl_like_item,喜歡項目,Preferred Items,好きな項目
+lbl_req_type,推薦類型,Recommendation Type,おすすめタイプ
+lbl_recommend_items,推薦項目,Recommended Items,おすすめ項目
+pdf_title,一日旅遊推薦報告,One-Day Travel Recommendation Report,1日旅行おすすめレポート
+lbl_summary,說明,Summary,概要
+lbl_profile,使用者資料,User Profile,ユーザープロフィール
+lbl_pc,地點介紹,Location Overview,スポット紹介
+lbl_detect,鞋款偵測,Shoe Detection,靴タイプ判定
+lbl_conf,信心,Confidence,信頼度
+lbl_intros,推薦項目,Recommended Items,おすすめ項目
+lbl_item,喜歡項目,Preferred Items,好きな項目
+lbl_req,推薦類型,Recommendation Type,おすすめタイプ
+report_time,報告時間,Report Time,レポート作成時刻
+confirmed_rate,確認正確率,Confirmation Accuracy,確認一致率
+footer_competition,2025年 資訊應用服務創新競賽-AMD 智慧場域與開源創新組,2025 InnoServe Competition – AMD Smart Environments & Open Innovation Track,"2025年 InnoServe 情報応用サービス・イノベーションコンテスト  
+― AMD スマート環境＆オープンイノベーショントラック ―"
+footer_team,【頭頭是道，腳下知道】專題團隊設計,"Project Team: “Head Leads, Feet Know”",プロジェクトチーム：「頭は理を説き、足は先を知る」
+footer_ai,由 AMD AI PC Llama3.2 生成,Generated by AMD AI PC (Llama 3.2),AMD AI PC（Llama 3.2）によって生成

@@ -1,0 +1,39 @@
+{
+  "categorical_cols": [
+    "Gender",
+    "Age",
+    "shoe",
+    "G-1【奕順軒】奶凍捲",
+    "G-2【橘之鄉】宜蘭必買金棗",
+    "G-3【三合餅舖】特色宜蘭蔥燒餅",
+    "G-4【新協珍餅店】西點烘焙、麵包",
+    "G-5大溪漁港】新鮮漁貨",
+    "G-6【頭圍農驛品牌館】當地農特產品",
+    "G-7諾貝爾奶凍捲",
+    "G-8【奶油麵包烘焙坊 Bread&Butter】頭城創始店",
+    "G-9【奶酥人】人氣奶酥吐司",
+    "G-10 極品四季香肉鬆"
+  ],
+  "numeric_cols": [],
+  "target_mode": "Multi-label (multiple foods per user)",
+  "class_names": [
+    "like-p1",
+    "like-p2",
+    "like-p3",
+    "like-p4",
+    "like-p5",
+    "like-p9",
+    "like-e1",
+    "like-e5",
+    "like-e8"
+  ],
+  "hidden": [
+    512,
+    256,
+    128
+  ],
+  "dropout": 0.2,
+  "max_emb_dim": 16,
+  "auto_tuned_threshold": true,
+  "preset": "Gifts"
+}
