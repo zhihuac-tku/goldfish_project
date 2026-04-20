@@ -111,7 +111,7 @@ def get_conn():
     except Exception:
         _global_conn = psycopg2.connect(
             host="localhost", port=5432,
-            database="tripdb", user="trip", password="trip123"
+            database="tripdb", user="postgres", password="trip123"
         )
     return _global_conn
 
