@@ -2,10 +2,7 @@
 chcp 65001 > nul
 setlocal enabledelayedexpansion
 
-:: 1. 鎖定目錄
-cd /d "%~dp0"
-
-:: 2. 設定 URL
+:: 1. 設定 URL
 set "BASE_URL=https://github.com/zhihuac-tku/goldfish_project/releases/download/v1.0"
 
 set "FILE_PY=python_installer.exe"
