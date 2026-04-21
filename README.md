@@ -2,16 +2,19 @@
 
 ```text
 # 🚀 快速開始
-1. 將專案 Clone 或下載到本地端
+1. 安裝Git
+🔗https://github.com/zhihuac-tku/goldfish_project/releases/download/v1.0.0/Git-2.54.0-64-bit.exe
+
+2. 將專案 Clone 或下載到本地端
 * 打開命令提示字元(cmd) 執行
 git clone https://github.com/zhihuac-tku/goldfish_project.git
 
-2. 執行安裝腳本
+3. 執行安裝腳本
 * 在命令提示字元(cmd)中 依序執行：
 cd goldfish_project
 .\setup.bat
 
-3. 開啟程式
+4. 開啟程式
 * 執行完安裝腳本後，接著執行：
 .\run.bat
 
