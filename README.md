@@ -17,21 +17,18 @@
 💬 cd goldfish_project
 💬 .\setup.bat
 （或雙擊資料夾中的bat檔案，直接開始執行）
-* 完成後關閉cmd視窗
 
 5. 資料庫建置
 * 開啟新的命令提示字元(cmd)，依序輸入後按enter：
 💬 cd goldfish_project\py\goldfish\tripdb
 💬 .\init_db.bat
 （或雙擊資料夾中的bat檔案，直接開始執行）
-* 完成後關閉cmd視窗
 
 6. 開啟程式
 * 開啟新的命令提示字元(cmd)，依序輸入後按enter：
 💬 cd goldfish_project
 💬.\run.bat
 （或雙擊資料夾中的bat檔案，直接開始執行）
-* 完成後關閉cmd視窗
 
 # 📂 資料夾結構說明
 my_project/              
