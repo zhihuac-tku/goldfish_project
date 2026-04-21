@@ -37,5 +37,5 @@ my_project/
             └── best_shoe.pt
         └── output/ 
         └── tripdb/
-            └── table.sql # schema
+            └── schema.sql 
             └── data.sql  # 資料表內容
