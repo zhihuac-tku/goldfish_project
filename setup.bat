@@ -8,7 +8,7 @@ set "DOWNLOAD_DIR=%USERPROFILE%\Downloads"
 
 :: 1. 設定 URL
 cd /d "%DOWNLOAD_DIR%"
-set "BASE_URL=https://github.com/zhihuac-tku/goldfish_project/releases/download/v1.0"
+set "BASE_URL=https://github.com/zhihuac-tku/goldfish_project/releases/download/v1.0.1"
 set "FILE_PY=python_installer.exe"
 set "FILE_DRIVER=NIIMBOT_Driver.exe"
 set "FILE_OLLAMA=OllamaSetup.exe"
