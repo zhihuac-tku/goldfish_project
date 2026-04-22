@@ -48,6 +48,23 @@ from datetime import datetime
 if "user_id" not in st.session_state:
     st.session_state["user_id"] = datetime.now().strftime("%Y%m%d_%H%M%S")
 
+import subprocess
+
+# --- 定義 Ollama 自動偵測函式 ---
+def get_ollama_models():
+    """使用內建 subprocess 抓取 ollama 清單"""
+    try:
+        # 執行系統指令
+        result = subprocess.run(['ollama', 'list'], capture_output=True, text=True, encoding='utf-8')
+        if result.returncode == 0:
+            lines = result.stdout.strip().split('\n')
+            if len(lines) > 1:
+                # 抓取第一欄的模型名稱
+                return [line.split()[0] for line in lines[1:] if line.strip()]
+    except:
+        pass
+    # 如果偵測失敗，回傳一個基礎清單當備案
+    return ["llama3:latest", "gemma2:latest"]
     
 # === Config ===
 
@@ -111,7 +128,7 @@ def get_conn():
     except Exception:
         _global_conn = psycopg2.connect(
             host="localhost", port=5432,
-            database="tripdb", user="postgres", password="trip123"
+            database="tripdb", user="trip", password="trip123"
         )
     return _global_conn
 
@@ -299,6 +316,22 @@ LABEL_ZH = {code: info['items_name'] for code, info in ITEM_INFO.items()}
 # 呼叫工具，建立索引
 CODE_INDEX = build_code_index(ITEM_INFO)
 
+def normalize_topk_to_en(topk_str, lang):
+    reverse_map = st.session_state.shoe_reverse_bundle.get(lang, {})
+    
+    pairs = topk_str.split("|")
+    new_pairs = []
+    
+    for p in pairs:
+        try:
+            name, score = p.split(":")
+            name_en = reverse_map.get(name, name)  # 🔥 關鍵
+            new_pairs.append(f"{name_en}:{float(score):.4f}")
+        except:
+            continue
+    
+    return "|".join(new_pairs)
+    
 # UI 顯示名稱的對照（從 L 抓取）
 # 假設 ui_text 有 'cat_place': '景點', 'cat_eat': '美食'...
 def get_category_options():
@@ -569,6 +602,16 @@ def save_shoe_feedback_to_db(row):
     conn = get_conn()
     cur = conn.cursor(cursor_factory=DictCursor)
 
+    current_lang = st.session_state.get("ui_lang", "zh")
+    reverse_map = st.session_state.shoe_reverse_bundle.get(current_lang, {})
+
+    # 🔥 統一英文
+    predicted_attr_en = reverse_map.get(row["predicted_attr"], row["predicted_attr"])
+    shoe_code_en = reverse_map.get(row["shoe_code"], row["shoe_code"])
+
+    # 🔥 topk 轉英文
+    topk_en = normalize_topk_to_en(row["topk"], current_lang)
+
     insert_sql = """
         INSERT INTO shoe_feedback (
             user_id,
@@ -590,12 +633,12 @@ def save_shoe_feedback_to_db(row):
 
     cur.execute(insert_sql, (
         user_id,          # <--- 🔥 使用統一的 user_id
-        row["timestamp"],               
-        row["predicted_attr"],
+        row["timestamp"],
+        predicted_attr_en,   # ✅ 統一英文
         row["pred_conf"],
-        row["topk"],
-        row["shoe_code"],
-        row["shoe_name_zh"],
+        topk_en,             # ✅ 統一英文
+        shoe_code_en,        # ✅ 統一英文
+        row["shoe_name_zh"], # 顯示用保留
         row["was_correct"],
         row["image_path"],
         row["location"]
@@ -782,21 +825,60 @@ os.makedirs(REPORT_SAVE_FOLDER, exist_ok=True)
 
 
 # === 模型選擇（家族）===
-FAMILY_MAP_OLLAMA = {
-    "llama3.2":    "llama3.2:latest",
-    "llama3.2-2k": "llama32-3b-2k:latest",
-    "llama3": "llama3:latest",
-}
-
 FAMILY_MAP_LMSTUDIO = {
     "llama3.2":    "llama3.2:latest",
     "llama3.2-2k": "llama32-3b-2k:latest",  # point both to the same for now
     "llama3": "llama3:latest",
+    "gemma4": "gemma4:latest",
 }
 
-family_choice = st.sidebar.selectbox("選擇 LLM 家族", list(FAMILY_MAP_OLLAMA.keys()), index=1)
-LLM_MODEL = (FAMILY_MAP_LMSTUDIO if BACKEND == "LM Studio" else FAMILY_MAP_OLLAMA)[family_choice]
-st.sidebar.info(f"目前使用模型：{family_choice} → {LLM_MODEL}")
+if BACKEND == "Ollama":
+    # 1. 自動偵測 Ollama
+    available_models = get_ollama_models()
+    
+    # 2. 計算預設索引 (優先順序：gemma4 > llama3:latest > llama3.2)
+    default_idx = 0
+    priorities = ["gemma4", "llama3:latest", "llama3.2"]
+    found_priority = False
+
+    for target in priorities:
+        for i, model_name in enumerate(available_models):
+            if target in model_name.lower():
+                default_idx = i
+                found_priority = True
+                break
+        if found_priority: break # 找到最高優先級後就停止搜尋
+
+    # 3. 帶入 Selectbox
+    LLM_MODEL = st.sidebar.selectbox(
+        "選擇 Ollama 模型", 
+        available_models, 
+        index=default_idx
+    )
+    st.sidebar.info(f"偵測到 {len(available_models)} 個模型")
+
+else:
+    # --- LM Studio 部分 (對照表家族選擇) ---
+    lm_keys = list(FAMILY_MAP_LMSTUDIO.keys())
+    lm_default_idx = 0
+    priorities = ["gemma4", "llama3.2", "llama3"] 
+
+    for target in priorities:
+        for i, k in enumerate(lm_keys):
+            if target in k.lower():
+                lm_default_idx = i
+                found_priority = True
+                break
+        if found_priority: break
+
+    family_choice = st.sidebar.selectbox(
+        "選擇 LM Studio 家族", 
+        lm_keys, 
+        index=lm_default_idx
+    )
+    LLM_MODEL = FAMILY_MAP_LMSTUDIO[family_choice]
+
+st.sidebar.success(f"確認使用：{LLM_MODEL}")
 
 # Normalize to short code "zh" | "en" | "ja"
 def normalize_lang(x: str) -> str:
@@ -1032,7 +1114,7 @@ st.sidebar.markdown("### 列印模式")
 st.session_state["printer_mode"] = st.sidebar.radio(
     "Printer mode",
     ("Test (no printing)", "Live (printing)"),
-    index=0,
+    index=1,
     key="printer_mode_radio",
 )
 
@@ -1040,7 +1122,7 @@ st.sidebar.markdown("### 標籤來源")
 st.session_state["tag_mode"] = st.sidebar.radio(
     "Tag selection",
     ("Test (always Welcome tag)", "Live (by user interactive)"),
-    index=0,
+    index=1,
     key="tag_mode_radio",
 )
 
@@ -2377,35 +2459,54 @@ if st.session_state.get("show_detected_attrs", False):
     opts_dict = {S.get(lbl, lbl): lbl for lbl in all_classes}
     opts_display = list(opts_dict.keys()) + [OTHER_LABEL]
 
-    sel = st.radio(L.get("comfirm"), opts_display, index=0, key="confirm_shoe_radio")
+    try:
+        # 取得模型預測標籤的翻譯名稱
+        current_pred_translated = S.get(pred_label, pred_label)
+        # 找出該名稱在顯示清單中的位置
+        default_idx = opts_display.index(current_pred_translated)
+    except ValueError:
+        # 如果不在清單內，才預設為 0
+        default_idx = 0
+
+    sel = st.radio(L.get("comfirm"), opts_display, index=default_idx, key="confirm_shoe_radio")
 
     final_label = None
     final_conf = 0.0
     manual_note = ""  # 新增：文字輸入內容
 
+    # --- 邏輯判定區 ---
+    final_label = None
+    final_conf = 0.0
+    manual_note = ""
+
     if sel == OTHER_LABEL:
-        # ❗ 改成文字輸入框
-        manual_note = st.text_input(
-            L.get("input"),
-            value=translated_top1
-        )
-        # 直接把輸入的文字作為 final_label
+        manual_note = st.text_input(L.get("input"), value=translated_top1)
         final_label = manual_note
+        # 選 Other 通常視為預測錯誤
     else:
         final_label = opts_dict.get(sel)
         final_conf = float(dict(topk).get(final_label, 0.0))
 
-    # --- 按鈕 ---
+    # --- 按鈕區 ---
     c1, c2 = st.columns(2)
     with c1: confirm_btn = st.button(L.get("stage0_next"))
     with c2: skip_btn = st.button(L.get("stage0_skip"))
 
     if confirm_btn or skip_btn:
+        raw_pred = st.session_state.get("predicted_label_raw") or pred_label
         if skip_btn:
-            final_label = pred_label
+            was_correct_flag = True
+            final_label = pred_label # 強制同步
             final_conf = pred_conf
+        else:
+            # 關鍵：直接比較原始 ID，避開翻譯表的干擾
+            was_correct_flag = (str(final_label).strip() == str(raw_pred).strip())
 
-        st.session_state["predicted_label"] = final_label
+        current_lang = st.session_state.get("ui_lang", "zh")
+        reverse_map = st.session_state.shoe_reverse_bundle.get(current_lang, {})
+        final_label_en = reverse_map.get(final_label, final_label)
+
+        st.session_state["predicted_label"] = final_label_en
         st.session_state["predicted_conf"] = final_conf
 
         # --- attributes fallback ---
@@ -2420,12 +2521,12 @@ if st.session_state.get("show_detected_attrs", False):
         row = {
             "user_id": st.session_state["user_id"],
             "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-            "predicted_attr": pred_label,
+            "predicted_attr": final_label_en,
             "pred_conf": round(pred_conf, 6),
-            "topk": "|".join([f"{S.get(lbl, lbl)}:{score:.4f}" for lbl, score in topk]),
+            "topk": "|".join([f"{lbl}:{score:.4f}" for lbl, score in topk]),
             "shoe_code": final_label,
             "shoe_name_zh": st.session_state.shoe_bundle.get("zh", {}).get(final_label, final_label),
-            "was_correct": (pred_label == final_label),
+            "was_correct": was_correct_flag,
             "image_path": saved_img_path,
             "location": "",
             "note": manual_note  # ✅ 新增備註欄位
