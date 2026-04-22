@@ -10,25 +10,28 @@
 💬 git clone https://github.com/zhihuac-tku/goldfish_project.git
 
 3. 跳出視窗，登入GitHub
-（完成後可至電腦 "C:\使用者\User" 中查看專案資料夾）
+（完成後可至電腦 "C:\使用者\User" 中查看 "goldfish_project" 專案資料夾是否存在）
 
 4. 執行安裝腳本
 * 在命令提示字元(cmd)中，依序輸入後按enter：
 💬 cd goldfish_project
 💬 .\setup.bat
 （或雙擊資料夾中的bat檔案，直接開始執行）
+* 完成後關閉cmd視窗
 
 5. 資料庫建置
 * 開啟新的命令提示字元(cmd)，依序輸入後按enter：
 💬 cd goldfish_project\py\goldfish\tripdb
 💬 .\init_db.bat
 （或雙擊資料夾中的bat檔案，直接開始執行）
+* 完成後關閉cmd視窗
 
 6. 開啟程式
 * 開啟新的命令提示字元(cmd)，依序輸入後按enter：
 💬 cd goldfish_project
 💬.\run.bat
 （或雙擊資料夾中的bat檔案，直接開始執行）
+* 完成後關閉cmd視窗
 
 # 📂 資料夾結構說明
 my_project/              
