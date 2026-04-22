@@ -67,7 +67,6 @@ def get_ollama_models():
     return ["llama3:latest", "gemma2:latest"]
     
 # === Config ===
-
 # Example model id as shown by LM Studio (/v1/models or the Models tab):
 LMSTUDIO_MODEL_ID = "llama3_2_3b"     # adjust if yours differs
 LMSTUDIO_MODEL_ID_2k = "llama-3.2-3b-instruct"     # adjust if yours differs
@@ -123,7 +122,7 @@ def get_conn():
         if _global_conn is None or _global_conn.closed != 0:
             _global_conn = psycopg2.connect(
                 host="localhost", port=5432,
-                database="tripdb", user="trip", password="trip123"
+                database="tripdb", user="postgres", password="trip123"
             )
     except Exception:
         _global_conn = psycopg2.connect(
