@@ -67,6 +67,7 @@ def get_ollama_models():
     return ["llama3:latest", "gemma2:latest"]
     
 # === Config ===
+
 # Example model id as shown by LM Studio (/v1/models or the Models tab):
 LMSTUDIO_MODEL_ID = "llama3_2_3b"     # adjust if yours differs
 LMSTUDIO_MODEL_ID_2k = "llama-3.2-3b-instruct"     # adjust if yours differs
@@ -122,7 +123,7 @@ def get_conn():
         if _global_conn is None or _global_conn.closed != 0:
             _global_conn = psycopg2.connect(
                 host="localhost", port=5432,
-                database="tripdb", user="postgres", password="trip123"
+                database="tripdb", user="trip", password="trip123"
             )
     except Exception:
         _global_conn = psycopg2.connect(
@@ -1020,9 +1021,11 @@ def save_user_image_copy(prefix="shoe", folder="../output/user_images"):
     try:
         img = st.session_state.get("last_crop") or st.session_state.get("last_image")
         if img is None:
+            st.error("Debug: 找不到 session 中的圖片物件")
             return ""
 
-        os.makedirs(folder, exist_ok=True)
+        if not os.path.exists(folder):
+            os.makedirs(folder, exist_ok=True)
 
         # 🔥 使用統一的 session user_id
         user_id = st.session_state["user_id"]
@@ -2357,6 +2360,7 @@ def run_inference():
         st.session_state['predicted_label'] = predicted_label
         st.session_state['predicted_conf']  = float(probs[max_idx])
         st.session_state['pred_topk']       = topk 
+        st.session_state.last_crop = pil_crop
         
         # 建立屬性字典
         predicted_attrs = {label: (label == predicted_label) for label in class_labels}
