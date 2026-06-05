@@ -899,7 +899,7 @@ def print_png_50x50_exact(
     margin_mm: float | None = 0.40,   # 主要尺寸控制
     bleed_pct: float | None = None,   
     x_shift_px: int = 0,              # +右 / -左 (如果印出來偏左，就給正數)
-    y_shift_px: int = 0,              # +下 / -上 (如果印出來偏上，就給正數)
+    y_shift_px: int = 5,              # +下 / -上 (如果印出來偏上，就給正數)
 ):
     """
     列印 50×50mm 圓形標籤至 NIIMBOT B21 (修正版)
