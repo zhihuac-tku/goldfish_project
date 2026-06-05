@@ -896,82 +896,78 @@ def print_png_50x50_exact(
     printer_name: str | None = None,
     rotate_deg: int = 0,
     ring_px: int = 10,
-    margin_mm: float | None = 0.40,   # main size control (mm of white edge)
-    bleed_pct: float | None = None,   # ignored when margin_mm is given
-    x_shift_px: int = 0,              # +right / -left
-    y_shift_px: int = 0,              # +down  / -up
+    margin_mm: float | None = 0.40,   # 主要尺寸控制
+    bleed_pct: float | None = None,   
+    x_shift_px: int = 0,              # +右 / -左 (如果印出來偏左，就給正數)
+    y_shift_px: int = 0,              # +下 / -上 (如果印出來偏上，就給正數)
 ):
     """
-    Print a round 50×50mm label to NIIMBOT B21/B21 Pro.
-    Works only on Windows with pywin32. On macOS/Linux, just warns.
+    列印 50×50mm 圓形標籤至 NIIMBOT B21 (修正版)
     """
     import os
+    import platform
     from PIL import Image, ImageDraw
 
-    # ✅ Guard: only Windows supports win32print
     if platform.system() != "Windows":
-        print("⚠️ print_png_50x50_exact() is only supported on Windows.")
+        print("⚠️ print_png_50x50_exact() 僅支援 Windows 系統。")
         return
 
     import win32print, win32ui
     from win32con import DM_OUT_BUFFER, DM_IN_BUFFER, DM_ORIENTATION, DM_PAPERWIDTH, DM_PAPERLENGTH
     from PIL import ImageWin
 
-############
-
-    HORZRES, VERTRES = 8, 10  # DeviceCaps constants
+    HORZRES, VERTRES = 8, 10
 
     if not os.path.exists(png_path):
         raise FileNotFoundError(png_path)
 
-    # -- choose printer & set 50×50 mm paper --
     printer = printer_name or win32print.GetDefaultPrinter()
     hprinter = win32print.OpenPrinter(printer)
     try:
         props   = win32print.GetPrinter(hprinter, 2)
         devmode = props["pDevMode"]
-        devmode.Fields     |= (DM_ORIENTATION | DM_PAPERWIDTH | DM_PAPERLENGTH)
-        devmode.Orientation = 1                   # portrait
-        devmode.PaperWidth  = int(50 * 10)        # tenths of mm
-        devmode.PaperLength = int(50 * 10)
+        devmode.Fields   |= (DM_ORIENTATION | DM_PAPERWIDTH | DM_PAPERLENGTH)
+        devmode.Orientation = 1
+        devmode.PaperWidth  = int(50 * 10) # 50mm
+        devmode.PaperLength = int(50 * 10) # 50mm
         win32print.DocumentProperties(
             None, hprinter, printer, devmode, devmode, DM_IN_BUFFER | DM_OUT_BUFFER
         )
 
-        # -- query driver raster safely --
         hdc = win32ui.CreateDC()
         hdc.CreatePrinterDC(printer)
         try:
             px_w = int(hdc.GetDeviceCaps(HORZRES))
             px_h = int(hdc.GetDeviceCaps(VERTRES))
-            if px_w <= 0 or px_h <= 0:
-                raise ValueError("driver returned zero size")
+            # 如果驅動回傳小於等於0，或者回傳了不對的螢幕解析度(例如96)，強制修正為 B21 的 203 DPI 數值
+            if px_w <= 100 or px_h <= 100:
+                px_w = px_h = 400
         except Exception:
-            px_w = px_h = 384  # safe default for B21-class engines
+            px_w = px_h = 400  # 203 DPI 下 50mm 精準像素應為 400
 
-        # -- load art, square-crop, resize to square side --
+        # -- 載入圖片並裁切成正方形 --
         im = Image.open(png_path).convert("L")
         s  = min(im.size)
         L  = (im.width  - s) // 2
         T  = (im.height - s) // 2
         im = im.crop((L, T, L + s, T + s))
 
-        side = min(px_w, px_h)                   # keep circle perfectly round
+        # 這裡的 side 必須完全等於畫布大小，確保比例為 1:1
+        side = min(px_w, px_h)
         im   = im.resize((side, side), Image.LANCZOS)
 
-        # -- compute pad (in px) from margin_mm or bleed_pct; clamp to sane range --
+        # -- 計算內縮邊距 (Pad) --
+        dpm = side / 50.0  # 每公釐點數
         if margin_mm is not None:
-            dpm = side / 50.0                    # dots per mm along the circle
             pad = int(round(float(margin_mm) * dpm))
         elif bleed_pct is not None:
             pad = int((1.0 - float(bleed_pct)) * side / 2)
         else:
-            dpm = side / 50.0
-            pad = int(round(0.40 * dpm))         # default 0.40 mm white edge
+            pad = int(round(0.40 * dpm))
 
-        pad = max(0, min(pad, (side - 2) // 2))  # clamp so ellipse stays valid
+        pad = max(0, min(pad, (side - 2) // 2))
 
-        # -- circular mask + bold ring for crisp thermal edge --
+        # -- 建立遮罩與圓圈線條 --
         mask = Image.new("L", (side, side), 0)
         ImageDraw.Draw(mask).ellipse(
             (pad, pad, side - pad - 1, side - pad - 1), fill=255
@@ -983,22 +979,19 @@ def print_png_50x50_exact(
                 outline=0, width=int(ring_px)
             )
 
-        # -- compose full page; tiny upward nudge to counter common feed bias --
+        # -- 建立畫布與置中 (加上微調參數) --
         canvas = Image.new("L", (px_w, px_h), 255)
+        
+        # 移除限制，讓大範圍的 x_shift / y_shift 可以正常運作
         off_x  = (px_w - side) // 2 + int(x_shift_px)
-        off_y  = (px_h - side) // 2 + int(y_shift_px) - 2   # ← small nudge up
-
-        # keep inside page
-        off_x = max(0, min(off_x, px_w - side))
-        off_y = max(0, min(off_y, px_h - side))
+        off_y  = (px_h - side) // 2 + int(y_shift_px)
 
         canvas.paste(im, (off_x, off_y), mask)
 
-        # rotate if requested, then force back to driver size
         if rotate_deg:
             canvas = canvas.rotate(rotate_deg, expand=True).resize((px_w, px_h), Image.NEAREST)
 
-        # 1-bit dither for thermal and print 1:1 pixels
+        # 轉為 1-bit 二值化點陣圖
         out_1b = canvas.convert("1", dither=Image.FLOYDSTEINBERG)
 
         hdc.StartDoc("B21Pro 50x50mm")
@@ -1007,7 +1000,7 @@ def print_png_50x50_exact(
         hdc.EndPage()
         hdc.EndDoc()
         hdc.DeleteDC()
-        print(f"Sent to printer: {printer}")
+        print(f"成功發送至印表機: {printer} (解析度: {px_w}x{px_h})")
 
     finally:
         win32print.ClosePrinter(hprinter)
