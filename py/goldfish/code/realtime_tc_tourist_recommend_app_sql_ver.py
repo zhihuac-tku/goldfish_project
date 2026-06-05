@@ -123,12 +123,12 @@ def get_conn():
         if _global_conn is None or _global_conn.closed != 0:
             _global_conn = psycopg2.connect(
                 host="localhost", port=5432,
-                database="tripdb", user="trip", password="trip123"
+                database="tripdb", user="postgres", password="trip123"
             )
     except Exception:
         _global_conn = psycopg2.connect(
             host="localhost", port=5432,
-            database="tripdb", user="trip", password="trip123"
+            database="tripdb", user="postgres", password="trip123"
         )
     return _global_conn
 
